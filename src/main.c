@@ -15,19 +15,19 @@ void init_structs(t_map *map)
   map->windH = 500;
   map->windW = 500;
   map->mlx = mlx_init();
-  map->wind = mlx_new_window(map->mlx, map->windW, map->windH, "rtv1");
-  map->img = mlx_new_image(map->mlx, map->windW, map->windH);
+  map->wind = mlx_new_window(map->mlx, WINDW, WINDH, "rtv1");
+  map->img = mlx_new_image(map->mlx, WINDW, WINDH);
   map->addr = (unsigned int*)mlx_get_data_addr(map->img, &map->bpp,
 					       &map->size_l, &map->endian);
-  ft_bzero(map->addr, (map->windW * map->windH) * 4);
+  ft_bzero(map->addr, (WINDW * WINDH) * 4);
   ft_bzero(map->color, (WINDH * WINDW) * 4);
   map->light = malloc(sizeof(t_sphere));
   map->light->pos = malloc(sizeof(t_vec));
-  init_vector(map->light->pos, WINDW / 2, 0, 1);
+  init_vector(map->light->pos, WINDW / 2, 0, 50);
   printf("light pos: (%f %f %f)\n", map->light->pos->x, map->light->pos->y, map->light->pos->z);
 }
 
-void  object(t_object *obj, float x, float y, float z)
+void  object(t_object *obj, double x, double y, double z)
 {
   
   obj->x = x;

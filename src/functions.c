@@ -19,14 +19,14 @@ void vector_minus(t_vec *dest, t_vec *orig, t_vec *dir)
   dest->z = orig->z - dir->z;
 }
 
-void vector_mult(t_vec *vec, float scalar)
+void vector_mult(t_vec *vec, double scalar)
 {
   vec->x *= scalar;  
   vec->y *= scalar;
   vec->z *= scalar;
 }
 
-void vector_div(t_vec *vec, float scalar)
+void vector_div(t_vec *vec, double scalar)
 {
   vec->x /= scalar;  
   vec->y /= scalar;

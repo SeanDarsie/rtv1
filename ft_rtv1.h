@@ -121,12 +121,13 @@ double vector_dot(t_vec *a, t_vec *b);
 void vector_minus(t_vec *oc, t_vec *orig, t_vec *dir);
 void vector_plus(t_vec *dest, t_vec * a, t_vec *b);
 void vector_div(t_vec *vec, double scalar);
-void vector_mult(t_vec *vec, double scalar);
+t_vec *vector_mult(t_vec *vec, double scalar);
 t_vec *normalize(t_vec *src);
 t_vec *sphere_normal(t_vec *intersect, t_sphere *sphere);
 uint32_t calc_shadow(t_map *map, t_ray *ray, double t, t_sphere *sphere);
 uint32_t mult_color(double dt);
 uint32_t color_combine(double dt);
+uint32_t add_color(uint32_t a, uint32_t b);
 void malloc_inter(t_intersect *inter);
 /* void intit_vector(int x, int y, int z); */
 /* void circle() */

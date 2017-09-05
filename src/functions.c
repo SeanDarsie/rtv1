@@ -19,11 +19,15 @@ void vector_minus(t_vec *dest, t_vec *orig, t_vec *dir)
   dest->z = orig->z - dir->z;
 }
 
-void vector_mult(t_vec *vec, double scalar)
+t_vec *vector_mult(t_vec *vec, double scalar)
 {
-  vec->x *= scalar;  
-  vec->y *= scalar;
-  vec->z *= scalar;
+  t_vec *ret_vector;
+
+  ret_vector = malloc(sizeof(t_vec));
+  ret_vector->x = vec->x * scalar;  
+  ret_vector->y = vec->y * scalar;
+  ret_vector->z = vec->z * scalar;
+  return (ret_vector);
 }
 
 void vector_div(t_vec *vec, double scalar)

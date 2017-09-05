@@ -12,15 +12,15 @@ uint32_t calc_shadow(t_map *map, t_ray *ray, double t, t_sphere *sphere)
   //printf("T: %f\n", t);
   intersect = malloc(sizeof(t_vec));
   L = malloc(sizeof(t_vec));
-  vector_mult(ray->dir, t);
-  vector_plus(intersect, ray->origin, ray->dir);
+  //  intersect = vector_mult(ray->dir, t);
+  vector_plus(intersect, ray->origin, vector_mult(ray->dir, t));
   //  vector_mult(intersect, t);
   vector_minus(L, map->light->pos, intersect);
   N = sphere_normal(intersect, sphere);
   dt = vector_dot(normalize(L), normalize(N));
   //  printf("%f\n", dt);
   //  dt = fabs(dt);
-  ret_color = color_combine(dt);
+  ret_color = add_color(0xFF0000, color_combine(dt));
   //  printf("%x\n", ret_color);
   /* if (ret_color > 0xFF0000) */
   /*   ret_color = 0xFF0000; */
@@ -33,12 +33,9 @@ int intersection(t_ray *ray, double *t, t_sphere *sphere)
   t_intersect *inter;
 
   inter = malloc(sizeof(t_intersect));
-  /* inter->origin = malloc(sizeof(t_vec)); */
-  /* inter->direction = malloc(sizeof(t_vec)); */
-  /* inter->oc = malloc(sizeof(t_vec)); */
   malloc_inter(inter);
-  inter->origin = ray->origin;
-  inter->direction = ray->dir;
+  vector_plus(inter->origin, ray->origin, inter->origin);
+  vector_plus(inter->direction, ray->dir, inter->direction);
   //  printf("sphere center (%f %f)\n", sphere->center->x, sphere->center->y);
   vector_minus( inter->oc,  inter->origin,  sphere->center);
   inter->b = 2 * vector_dot(inter->oc, inter->direction);

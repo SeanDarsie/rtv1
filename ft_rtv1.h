@@ -104,8 +104,9 @@ typedef struct s_map
   int windH;
   int windW;
   int num_shapes;
+  t_sphere **spheres;
   t_light *light;
-  uint32_t **scene;
+  void (*scene_init)(struct s_map*);
 }              t_map;
 
 void init_struct(t_map *map);
@@ -128,7 +129,9 @@ uint32_t calc_shadow(t_map *map, t_ray *ray, double t, t_sphere *sphere);
 uint32_t mult_color(double dt);
 uint32_t color_combine(double dt);
 uint32_t add_color(uint32_t a, uint32_t b);
+uint32_t sub_color(uint32_t a, uint32_t b);
 void malloc_inter(t_intersect *inter);
+void scene_init1(t_map *map);
 /* void intit_vector(int x, int y, int z); */
 /* void circle() */
 /* void cylander() */

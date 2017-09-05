@@ -44,11 +44,11 @@ uint32_t add_color(uint32_t a, uint32_t b)
   uint32_t blue;
   uint32_t tmp;
 
-  tmp = a;
-  red = b >> 16;
-  green = b << 16;
+  tmp = b;
+  red = a >> 16;
+  green = a << 16;
   green >>= 24;
-  blue = b << 24;
+  blue = a << 24;
   blue >>= 24;
   red += tmp >> 16;
   if (red > 0xFF)
@@ -58,9 +58,42 @@ uint32_t add_color(uint32_t a, uint32_t b)
   green += tmp;
   if (green > 0xFF)
     green = 0xFF;
-  tmp = a << 24;
+  tmp = b << 24;
   tmp >>= 24;
   blue += tmp;
+  if (blue > 0xFF)
+    blue = 0xFF;
+  red <<= 16;
+  green <<= 8;
+  //printf("(%#X %#X %#X) b = %#X\n", red, green, blue, b);
+   return (red + green + blue);
+   // return (a | b); 
+}
+
+uint32_t sub_color(uint32_t a, uint32_t b)
+{
+  uint32_t red;
+  uint32_t green;
+  uint32_t blue;
+  uint32_t tmp;
+
+  tmp = b;
+  red = a >> 16;
+  green = a << 16;
+  green >>= 24;
+  blue = a << 24;
+  blue >>= 24;
+  red -= tmp >> 16;
+  if (red > 0xFF)
+    red = 0xFF;
+  tmp <<= 16;
+  tmp >>= 24;
+  green -= tmp;
+  if (green > 0xFF)
+    green = 0xFF;
+  tmp = b << 24;
+  tmp >>= 24;
+  blue -= tmp;
   if (blue > 0xFF)
     blue = 0xFF;
   red <<= 16;

@@ -23,8 +23,9 @@ void init_structs(t_map *map)
   ft_bzero(map->color, (WINDH * WINDW) * 4);
   map->light = malloc(sizeof(t_sphere));
   map->light->pos = malloc(sizeof(t_vec));
-  init_vector(map->light->pos, WINDW / 2, 0, 100);
+  init_vector(map->light->pos, 0, 0 , 50);
   printf("light pos: (%f %f %f)\n", map->light->pos->x, map->light->pos->y, map->light->pos->z);
+  map->scene_init = scene_init1;
 }
 
 void  object(t_object *obj, double x, double y, double z)

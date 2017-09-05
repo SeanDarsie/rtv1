@@ -20,10 +20,7 @@ uint32_t calc_shadow(t_map *map, t_ray *ray, double t, t_sphere *sphere)
   dt = vector_dot(normalize(L), normalize(N));
   //  printf("%f\n", dt);
   //  dt = fabs(dt);
-  ret_color = add_color(0xFF0000, color_combine(dt));
-  //  printf("%x\n", ret_color);
-  /* if (ret_color > 0xFF0000) */
-  /*   ret_color = 0xFF0000; */
+  ret_color = /* sub_color(0xFFFFFF, color_combine(dt)); */add_color(0xFF0000, color_combine(dt));
   return (ret_color);
 }
 
@@ -43,18 +40,19 @@ int intersection(t_ray *ray, double *t, t_sphere *sphere)
   inter->c -= (sphere->radius * sphere->radius);
   inter->disc = (inter->b * inter->b) - (4 * inter->c);
   if (inter->disc < 0)
-    return (FALSE);
+    {
+      free(inter);
+      return (FALSE);
+    }
   else
     {
       inter->disc = sqrt(inter->disc);
       inter->t0 = -inter->b - inter->disc;
       inter->t1 = -inter->b + inter->disc;
       *t = (inter->t0 < inter->t1) ? inter->t0 : inter->t1;
-      //printf("T: %f\n", *t);
       free(inter);
       return (TRUE);
     }
-  free(inter);
   return(TRUE);
 }
  
@@ -67,12 +65,13 @@ void trace(t_map *map)
   t_ray *ray;
 
   i = 0;
+  t = 20000;
   j = 0;
   ray = malloc(sizeof(t_ray));
   ray->origin = malloc(sizeof(t_vec));
   ray->dir = malloc(sizeof(t_vec));
   sphere = malloc(sizeof(t_sphere));
-  init_ray(ray, WINDW / 2, WINDH / 2, 50);
+  init_ray(ray, 300, 300, 50);
   
   circle(sphere, ray->origin, 100, 0xFF0000);
   // printf("circle center %f\n", sphere->center->z);
@@ -85,7 +84,6 @@ void trace(t_map *map)
 	{
 	  init_ray(ray, (double)i, (double)j, 0);
 	  // printf("origen (%f %f %f) direction (%f %f %f)\n", ray->origin->x,ray->origin->y, ray->origin->z, ray->dir->x, ray->dir->y, ray->dir->z);   
-	  t = 20000;
 	  if (intersection(ray, &t, sphere))
 	    map->color[i][j] = calc_shadow(map, ray, t, sphere); /* color pixel */
 	  j++;

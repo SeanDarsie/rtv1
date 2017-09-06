@@ -20,7 +20,7 @@ uint32_t calc_shadow(t_map *map, t_ray *ray, double t, t_sphere *sphere)
   dt = vector_dot(normalize(L), normalize(N));
   //  printf("%f\n", dt);
   //  dt = fabs(dt);
-  ret_color = color_combine(dt);
+  ret_color = /* add_color(0x0000FF, color_combine(dt)); */ color_combine(dt);
   return (ret_color);
 }
 

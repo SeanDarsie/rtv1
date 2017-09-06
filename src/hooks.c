@@ -19,7 +19,7 @@ int           key_hook(int key, t_map *map)
       exit(0);
     }
   printf("KEY: %d\n", key);
-  if (key == 123)
+  if (key == 126)
     {
       mlx_clear_window(map->mlx, map->wind);
       init_vector(map->light->pos, 0, 0, 50);
@@ -40,7 +40,7 @@ int           key_hook(int key, t_map *map)
       trace(map);
       color_image(map);  
     }
-  if (key == 126)
+  if (key == 123)
     {
       mlx_clear_window(map->mlx, map->wind);
       init_vector(map->light->pos, 0, WINDH, 50);

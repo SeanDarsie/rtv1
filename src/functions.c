@@ -2,7 +2,7 @@
 
 double vector_dot(t_vec *a, t_vec *b)
 {
-  return (a->x * b->x + a->y * b->y + a->z * b->z);
+  return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z));
 }
 
 void vector_plus(t_vec *dest, t_vec * a, t_vec *b)

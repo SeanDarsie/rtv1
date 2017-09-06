@@ -132,6 +132,7 @@ uint32_t add_color(uint32_t a, uint32_t b);
 uint32_t sub_color(uint32_t a, uint32_t b);
 void malloc_inter(t_intersect *inter);
 void scene_init1(t_map *map);
+void color_image(t_map *map);
 /* void intit_vector(int x, int y, int z); */
 /* void circle() */
 /* void cylander() */

@@ -42,7 +42,7 @@ void circle(t_sphere *circ, t_vec *center, double rad, uint32_t color)
   circ->center->x = center->x;
   circ->center->y = center->y;
   circ->center->z = center->z;
-  printf("sphere center: (%f %f %f)\n", circ->center->x, circ->center->y, circ->center->z);
+  //printf("sphere center: (%f %f %f)\n", circ->center->x, circ->center->y, circ->center->z);
   circ->radius = rad;
   circ->color = color;
 }

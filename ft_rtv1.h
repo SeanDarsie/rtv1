@@ -9,12 +9,22 @@
 # define WINDW  500
 # define WINDH  500
 
-typedef struct s_point
+typedef struct s_augmat
 {
-  int x;
-  int y;
-  int z;
-}              t_point;
+  double Ax;
+  double Ay;
+  double Az; 
+  double Bx;
+  double By;
+  double Bz; 
+  double Cx;
+  double Cy;
+  double Cz;
+  double x;
+  double y;
+  double z;
+  
+} t_augmat;
 
 typedef struct s_vec
 {
@@ -39,6 +49,20 @@ typedef struct s_ray
   t_vec *dir;
   
 }              t_ray;
+
+
+typedef struct s_plane
+{
+  t_vec *a;
+  t_vec *b;
+  t_vec *c;
+  uint32_t color;
+} t_plane;
+
+/* typedef struct s_cone */
+/* { */
+  
+/* }   t_cone; */
 
 typedef struct s_sphere
 {
@@ -109,6 +133,14 @@ typedef struct s_map
   void (*scene_init)(struct s_map*);
 }              t_map;
 
+typedef struct s_objs
+{
+  t_vec *center;
+  double radius; //size
+  uint32_t color;
+  int (*intersect)(t_map*);
+} t_objs;
+  
 void init_struct(t_map *map);
 void init_scene(t_scene *scene, t_map *map);
 void init_vector(t_vec *vec, double x, double y, double z);

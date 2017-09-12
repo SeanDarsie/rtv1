@@ -11,6 +11,7 @@
 
 typedef struct s_augmat
 {
+  double matrix[3][4];
   double Ax;
   double Ay;
   double Az; 
@@ -137,8 +138,9 @@ typedef struct s_objs
 {
   t_vec *center;
   double radius; //size
+  double height;
   uint32_t color;
-  int (*intersect)(t_map*);
+  int (*intersect)(t_vec*, double*, struct s_objs*);
 } t_objs;
   
 void init_struct(t_map *map);
@@ -165,6 +167,12 @@ uint32_t sub_color(uint32_t a, uint32_t b);
 void malloc_inter(t_intersect *inter);
 void scene_init1(t_map *map);
 void color_image(t_map *map);
+
+//intersections
+int sphere_intersection(t_ray *ray, double *t,  t_objs *sphere);
+int triangle_intersection(t_ray *ray, double *t,  t_objs *plane);
+int cone_intersection(t_ray *ray, double *t,  t_objs *cone);
+int cylander_intersection(t_ray *ray, double *t,  t_objs *cyl);
 /* void intit_vector(int x, int y, int z); */
 /* void circle() */
 /* void cylander() */

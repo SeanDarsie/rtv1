@@ -35,7 +35,7 @@ int intersection(t_ray *ray, double *t, t_sphere *sphere)
   vector_plus(inter->direction, ray->dir, inter->direction);
   //  printf("sphere center (%f %f)\n", sphere->center->x, sphere->center->y);
   vector_minus( inter->oc,  inter->origin,  sphere->center);
-  inter->b = 2 * vector_dot(inter->oc, inter->direction);
+  inter->b = 2.0 * vector_dot(inter->oc, inter->direction);
   inter->c = vector_dot(inter->oc, inter->oc);
   inter->c -= (sphere->radius * sphere->radius);
   inter->disc = (inter->b * inter->b) - (4 * inter->c);
@@ -82,7 +82,7 @@ void trace(t_map *map)
       j = 0;
       while (j < WINDW)
 	{
-	  init_ray(ray, (double)i, (double)j, 0);
+	  init_ray(ray, (double)i, (double)j, 25);
 	  // printf("origen (%f %f %f) direction (%f %f %f)\n", ray->origin->x,ray->origin->y, ray->origin->z, ray->dir->x, ray->dir->y, ray->dir->z);   
 	  if (intersection(ray, &t, sphere))
 	    map->color[i][j] = calc_shadow(map, ray, t, sphere); /* color pixel */

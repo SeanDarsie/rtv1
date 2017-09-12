@@ -23,7 +23,8 @@ FRAMEWORKS = -framework OpenGL -framework AppKit
 
 SRC_DIR = ./src/
 FILES = main.c trace.c shapes.c hooks.c functions.c \
-	vectors.c color.c scene_init.c\
+	vectors.c color.c scene_init.c intersections.c\
+	\
 
 
 SRCS = $(addprefix $(SRC_DIR),$(FILES))

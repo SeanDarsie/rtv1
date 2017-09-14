@@ -67,11 +67,9 @@ void trace(t_map *map)
   i = 0;
   t = 20000;
   j = 0;
-  ray = malloc(sizeof(t_ray));
-  ray->origin = malloc(sizeof(t_vec));
-  ray->dir = malloc(sizeof(t_vec));
+  ray = init_ray(300, 300, 50);
+ 
   sphere = malloc(sizeof(t_sphere));
-  init_ray(ray, 300, 300, 50);
   
   circle(sphere, ray->origin, 100, 0xFF0000);
   // printf("circle center %f\n", sphere->center->z);
@@ -82,7 +80,7 @@ void trace(t_map *map)
       j = 0;
       while (j < WINDW)
 	{
-	  init_ray(ray, (double)i, (double)j, 25);
+	  update_ray(ray, (double)i, (double)j, 25);
 	  // printf("origen (%f %f %f) direction (%f %f %f)\n", ray->origin->x,ray->origin->y, ray->origin->z, ray->dir->x, ray->dir->y, ray->dir->z);   
 	  if (intersection(ray, &t, sphere))
 	    map->color[i][j] = calc_shadow(map, ray, t, sphere); /* color pixel */

@@ -13,17 +13,25 @@ t_vec *normalize(t_vec *src)
   return (ret_vec);
 }
 
-void init_vector(t_vec *vec, double x, double y, double z)
+t_vec *init_vector(double x, double y, double z)
 {
-  vec->x = x;
-  vec->y = y;
-  vec->z = z;
+  t_vec *vector;
+
+  vector = malloc(sizeof(t_vec));
+  vector->x = x;
+  vector->y = y;
+  vector->z = z;
+  return (vector);
 }
 
-void init_ray(t_ray *ray, double x, double y, double z)
+t_ray *init_ray(double x, double y, double z)
 {
-  init_vector(ray->dir, 0.0, 0.0, 1.0);
-  init_vector(ray->origin, x, y, z);
+  t_ray *ray;
+
+  ray = malloc(sizeof(t_ray));
+  ray->dir = init_vector(0.0, 0.0, 1.0);
+  ray->origin = init_vector(x, y, z);
+  return (ray);
 }
 
 t_vec *sphere_normal(t_vec *intersect, t_sphere *sphere)

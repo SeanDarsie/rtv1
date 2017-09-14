@@ -22,28 +22,28 @@ int           key_hook(int key, t_map *map)
   if (key == 126)
     {
       mlx_clear_window(map->mlx, map->wind);
-      init_vector(map->light->pos, 0, 0, 50);
+      update_vector(map->light->pos, 0, 0, 50);
       trace(map);
       color_image(map);
     }
   if (key == 124)
     {
       mlx_clear_window(map->mlx, map->wind);
-      init_vector(map->light->pos, WINDW, 0, 50);
+      update_vector(map->light->pos, WINDW, 0, 50);
       trace(map);
       color_image(map);
     }
   if (key == 125)
     {
       mlx_clear_window(map->mlx, map->wind);
-      init_vector(map->light->pos, WINDW, WINDH, 50);
+      update_vector(map->light->pos, WINDW, WINDH, 50);
       trace(map);
       color_image(map);  
     }
   if (key == 123)
     {
       mlx_clear_window(map->mlx, map->wind);
-      init_vector(map->light->pos, 0, WINDH, 50);
+      update_vector(map->light->pos, 0, WINDH, 50);
       trace(map);
       color_image(map);
     }

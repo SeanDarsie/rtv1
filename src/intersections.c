@@ -45,9 +45,14 @@ int sphere_intersection(t_ray *ray, double *t, t_objs *sphere)
 
 /* void plane(t_vec *pixel, t_vec *a, t_vec *b, t_vec *c) */
 /* { */
+/*   double t; */
+/*   t_vec *cross; */
+  
+  
+/*   t = d / (pixel->x + pixel->y + pixel->z); */
 /*   double matrix[3][4]; */
 
   
 /* } */
 
-/* a[(1 - t)*cx + t*px] b[(1 - t)cy + tPy] + c[(1 - t)Cz + tpz] + d = 0 */
+/* a[t*px] b[tPy] + c[tpz] + d = 0 */

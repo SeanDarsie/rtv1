@@ -16,12 +16,12 @@ void scene_init1(t_map *map)
       i++;
     }
   i = 0;
-  init_vector(vector, WINDW / 2, WINDH / 2, 50);
+  init_vector(WINDW / 2, WINDH / 2, 50);
   while (i < map->num_shapes)
     {
       circle(map->spheres[i], vector, 100, 0xFF0000);
       i++;
-      init_vector(vector, 100, 100, 50);
+      init_vector(100, 100, 50);
     }
 }
 

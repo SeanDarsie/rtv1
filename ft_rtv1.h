@@ -155,6 +155,7 @@ void trace(t_map *map);
 int		exit_hook(t_map *map);
 int             key_hook(int key, t_map *map);
 double vector_dot(t_vec *a, t_vec *b);
+double vector_magnitude(t_vec *vec);
 void vector_minus(t_vec *oc, t_vec *orig, t_vec *dir);
 void vector_plus(t_vec *dest, t_vec * a, t_vec *b);
 void vector_div(t_vec *vec, double scalar);
@@ -172,6 +173,7 @@ void scene_init1(t_map *map);
 void color_image(t_map *map);
 
 //intersections
+double plane_eq(t_vec *a, t_vec *b, t_vec *c);
 int sphere_intersection(t_ray *ray, double *t,  t_objs *sphere);
 int triangle_intersection(t_ray *ray, double *t,  t_objs *plane);
 int cone_intersection(t_ray *ray, double *t,  t_objs *cone);

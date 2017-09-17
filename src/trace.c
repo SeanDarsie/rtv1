@@ -41,3 +41,10 @@ double vector_magnitude(t_vec *vec)
 {
   return (sqrt(vector_dot(vec, vec)));
 }
+
+void init_matrix(double **matrix)
+{
+  
+}
+
+void delete_matrix(double **matrix)

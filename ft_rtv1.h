@@ -54,10 +54,8 @@ typedef struct s_ray
 
 typedef struct s_plane
 {
-  t_vec *a;
-  t_vec *b;
-  t_vec *c;
-  uint32_t color;
+  t_vec *abc;
+  double d;
 } t_plane;
 
 /* typedef struct s_cone */
@@ -173,7 +171,7 @@ void scene_init1(t_map *map);
 void color_image(t_map *map);
 
 //intersections
-double plane_eq(t_vec *a, t_vec *b, t_vec *c);
+t_plane *plane_eq(t_vec *a, t_vec *b, t_vec *c);
 int sphere_intersection(t_ray *ray, double *t,  t_objs *sphere);
 int triangle_intersection(t_ray *ray, double *t,  t_objs *plane);
 int cone_intersection(t_ray *ray, double *t,  t_objs *cone);

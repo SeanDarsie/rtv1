@@ -96,16 +96,18 @@ t_plane *plane_eq(t_vec *a, t_vec *b, t_vec *c)
   return (eq);
 }
 //pi is the point of intersection
-int inside_triangle(t_vec *a,t_vec *b,t_vec *c, t_vec *pi) 
-{
-  double **matrix;
-  int i;
-  int j;
-
-  i = -1;
-  matrix = init_matrix(a, b, c, pi);
 
 
+/* int inside_triangle(t_vec *a,t_vec *b,t_vec *c, t_vec *pi)  */
+/* { */
+/*   double **matrix; */
+/*   int i; */
+/*   int j; */
 
-}
-/* a[t*px] b[tPy] + c[tpz] + d = 0 */
+/*   i = -1; */
+/*   matrix = init_matrix(a, b, c, pi); */
+
+
+
+/* } */
+/* /\* a[t*px] b[tPy] + c[tpz] + d = 0 *\/ */

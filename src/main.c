@@ -9,6 +9,23 @@
 /*   scene->cam.y = 0.0; */
 /*   scene->cam.z = 0.0; */
 /* } */
+void test(void)
+{
+  t_vec *a;
+  t_vec *b;
+  t_vec *c;
+  t_vec *pi;
+  double **matrix;
+
+  a = init_vector(4, 2, 4);
+  b = init_vector(5, -5, 5);
+  c = init_vector(3, -2, 6);
+  pi = init_vector(3.7, -1.4, 5.2);
+  matrix = init_matrix(a,b,c,pi);
+  print_mat(matrix);
+  printf("\n");
+  forward_elim(matrix);
+}
 
 void init_structs(t_map *map)
 {
@@ -26,6 +43,7 @@ void init_structs(t_map *map)
   map->light->pos = init_vector(WINDW, 0 , 50);
   // printf("light pos: (%f %f %f)\n", map->light->pos->x, map->light->pos->y, map->light->pos->z);
   map->scene_init = scene_init1;
+  test();
 }
 
 void  object(t_object *obj, double x, double y, double z)

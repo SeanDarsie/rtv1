@@ -36,13 +36,13 @@ void print_mat(double **matrix)
     }
 }
 
-void row_echelon(double **matrix) /* transform matrix to row echelon form */
-{
-  int i;
+/* void row_echelon(double **matrix) /\* transform matrix to row echelon form *\/ */
+/* { */
+/*   int i; */
 
-  i = -1;
+/*   i = -1; */
   
-}
+/* } */
 
 double  **init_matrix(t_vec *a,t_vec *b,t_vec *c, t_vec *pi)
 {
@@ -81,7 +81,7 @@ void delete_matrix(double **matrix)
 
 
 
-int forwardElim(double **mat)
+int forward_elim(double **mat)
 {
   int k;
   int i;
@@ -126,15 +126,19 @@ int forwardElim(double **mat)
                row element*/
 	    j = k + 1;
             while (j <= 3)
-                mat[i][j] -= mat[k][j]*f;
+	      {
+		mat[i][j] -= mat[k][j]*f;
+		j++;
+	      }
  
             /* filling lower triangular matrix with zeros*/
             mat[i][k] = 0;
+	    i++;
         }
  
-        print_mat(mat);        //for matrix state
+	//    print_mat(mat);        //for matrix state
     }
-    //print(mat);            //for matrix state
+    print_mat(mat);            //for matrix state
     return -1;
 }
 

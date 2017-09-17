@@ -6,7 +6,7 @@
 #    By: sdarsie <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/29 15:22:15 by sdarsie           #+#    #+#              #
-#    Updated: 2017/06/03 17:50:03 by sdarsie          ###   ########.fr        #
+#    Updated: 2017/09/17 13:19:20 by sdarsie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FRAMEWORKS = -framework OpenGL -framework AppKit
 SRC_DIR = ./src/
 FILES = main.c trace.c shapes.c hooks.c functions.c \
 	vectors.c color.c scene_init.c intersections.c\
-	\
+	matrix.c\
 
 
 SRCS = $(addprefix $(SRC_DIR),$(FILES))

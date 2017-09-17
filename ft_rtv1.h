@@ -184,5 +184,7 @@ int cylander_intersection(t_ray *ray, double *t,  t_objs *cyl);
 
 /* void cast_ray(); */
 /* void trace(); */
+double  **init_matrix(t_vec *a,t_vec *b,t_vec *c, t_vec *pi);
+void delete_matrix(double **matrix);
 
 #endif

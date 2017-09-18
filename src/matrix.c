@@ -138,51 +138,44 @@ int forward_elim(double **mat)
  
 	//    print_mat(mat);        //for matrix state
     }
-    print_mat(mat);            //for matrix state
+  //print_mat(mat);            //for matrix state
     return -1;
 }
 
-/* int forwardElim(double mat[N][N+1]) */
-/* { */
-/*     for (int k=0; k<N; k++) */
-/*     { */
-/*         // Initialize maximum value and index for pivot */
-/*         int i_max = k; */
-/*         int v_max = mat[i_max][k]; */
+double *back_sub(double **mat)
+{
+    double *x;  // An array to store solution
+    int i;
+    int j;
+    /* Start calculating from last equation up to the
+       first */
+    i = 2;
+    x  = malloc(sizeof(double) * 3);
+    while (i >= 0)
+    {
+        /* start with the RHS of the equation */
+        x[i] = mat[i][3];
  
-/*         /\* find greater amplitude for pivot if any *\/ */
-/*         for (int i = k+1; i < N; i++) */
-/*             if (abs(mat[i][k]) > v_max) */
-/*                 v_max = mat[i][k], i_max = i; */
+        /* Initialize j to i+1 since matrix is upper
+           triangular*/
+	j = i + 1;
+        while (j < 3)
+        {
+            /* subtract all the lhs values
+             * except the coefficient of the variable
+             * whose value is being calculated */
+            x[i] -= mat[i][j]*x[j];
+	    j++;
+        }
  
-/*         /\* if a prinicipal diagonal element  is zero, */
-/*          * it denotes that matrix is singular, and */
-/*          * will lead to a division-by-zero later. *\/ */
-/*         if (!mat[k][i_max]) */
-/*             return k; // Matrix is singular */
+        /* divide the RHS by the coefficient of the
+           unknown being calculated */
+        x[i] = x[i]/mat[i][i];
+	i--;
+    }
  
-/*         /\* Swap the greatest value row with current row *\/ */
-/*         if (i_max != k) */
-/*             swap_row(mat, k, i_max); */
- 
- 
-/*         for (int i=k+1; i<N; i++) */
-/*         { */
-/*             /\* factor f to set current row kth elemnt to 0, */
-/*              * and subsequently remaining kth column to 0 *\/ */
-/*             double f = mat[i][k]/mat[k][k]; */
- 
-/*             /\* subtract fth multiple of corresponding kth */
-/*                row element*\/ */
-/*             for (int j=k+1; j<=N; j++) */
-/*                 mat[i][j] -= mat[k][j]*f; */
- 
-/*             /\* filling lower triangular matrix with zeros*\/ */
-/*             mat[i][k] = 0; */
-/*         } */
- 
-/*         //print(mat);        //for matrix state */
-/*     } */
-/*     //print(mat);            //for matrix state */
-/*     return -1; */
-/* } */
+    /* printf("\nSolution for the system:\n"); */
+    /* for (int i=0; i<3; i++) */
+    /*     printf("%lf\n", x[i]); */
+    return (x);
+}

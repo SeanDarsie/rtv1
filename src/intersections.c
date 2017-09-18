@@ -56,58 +56,45 @@ int sphere_intersection(t_ray *ray, double *t, t_objs *sphere)
 /*   /\* 	    {c->x, c->y, c->z, t}};  *\/  */
 /* } */
 
-t_vec *plane_intersect(t_vec *pix, t_plane *eq)
-{
-  t_vec *point_of_intersection;
-  double t;
-
-  t = ((pix->x * eq->abc->x)
-       + (pix->y * eq->abc->y)
-       + (pix->z * eq->abc->z));
-  t = eq->d / t;
-  point_of_intersection = init_vector(pix->x * t,
-				      pix->y * t,
-				      pix->z * t);
-  return (point_of_intersection);
-}
 
 
-t_plane *plane_eq(t_vec *a, t_vec *b, t_vec *c)
-{
-  t_plane *eq;
-  t_vec *ab;
-  t_vec *ac;
-  t_vec *cross;
-  double ret_val;
 
-  ret_val = 0;
-  eq = malloc(sizeof(t_plane));
-  ab = malloc(sizeof(t_vec));
-  ac = malloc(sizeof(t_vec));
-  vector_minus(ab, b, a);
-  vector_minus(ac, c, a);
-  cross = cross_product(ac, ac);
-  ret_val += cross->x * a->x;
-  ret_val += cross->y * a->y;
-  ret_val += cross->z * a->z;
-  eq->abc = init_vector(cross->x, cross->y, cross->z);
-  ret_val *= -1;
-  eq->d = ret_val;
-  return (eq);
-}
+
 //pi is the point of intersection
 
 
-/* int inside_triangle(t_vec *a,t_vec *b,t_vec *c, t_vec *pi)  */
-/* { */
-/*   double **matrix; */
-/*   int i; */
-/*   int j; */
+int inside_triangle(t_vec *a,t_vec *b,t_vec *c, t_vec *pi)
+{
+  double **matrix;
+  double *solution;
+  int flag;
 
-/*   i = -1; */
-/*   matrix = init_matrix(a, b, c, pi); */
-
-
+  matrix = init_matrix(a, b, c, pi);
+  flag = forward_elim(matrix);
+  solution = back_sub(matrix);
+  if (solution[0] > 0 && solution[1] > 0 && solution[2] > 0)
+    {
+      printf("ray DOES intersect triangle");
+      delete_matrix(matrix);
+      free(solution);
+      return (TRUE);
+    }
+  else if (solution[0] < 0 && solution[1] < 0 && solution[2] < 0)
+    {
+      printf("ray DOES intersect triangle");
+      delete_matrix(matrix);
+      free(solution);
+      return (TRUE);
+    }
+  else
+    {
+      printf("ray does NOT intersect triangle");
+      delete_matrix(matrix);
+      free(solution);
+      return (FALSE);
+    }
+  return (0);
+}
 
 /* } */
 /* /\* a[t*px] b[tPy] + c[tpz] + d = 0 *\/ */

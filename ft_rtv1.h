@@ -51,7 +51,13 @@ typedef struct s_ray
   
 }              t_ray;
 
-
+typedef struct s_square
+{
+  t_vec *a;
+  t_vec *b;
+  t_vec *c;
+  t_vec *d;
+} t_square;
 typedef struct s_plane
 {
   t_vec *abc;
@@ -188,5 +194,8 @@ double  **init_matrix(t_vec *a,t_vec *b,t_vec *c, t_vec *pi);
 void delete_matrix(double **matrix);
 void print_mat(double **matrix);
 int forward_elim(double **mat);
+//void back_sub(double **mat);
+double *back_sub(double **mat);
+
 
 #endif

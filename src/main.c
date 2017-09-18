@@ -16,15 +16,36 @@ void test(void)
   t_vec *c;
   t_vec *pi;
   double **matrix;
+  int flag;
+  double *sol;
 
-  a = init_vector(4, 2, 4);
-  b = init_vector(5, -5, 5);
-  c = init_vector(3, -2, 6);
-  pi = init_vector(3.7, -1.4, 5.2);
+  a = init_vector(1, 2, 2);
+  b = init_vector(3, 3, 3);
+  c = init_vector(4, 5, 4);
+  pi = init_vector(1.9, 2.3, 2.4);
   matrix = init_matrix(a,b,c,pi);
   print_mat(matrix);
   printf("\n");
-  forward_elim(matrix);
+  flag = forward_elim(matrix);
+  //  if (flag == -1)
+  sol = back_sub(matrix);
+  if (sol[0] > 0 && sol[1] > 0 && sol[2] > 0)
+    printf("ray DOES intersect triangle");
+  else if (sol[0] < 0 && sol[1] < 0 && sol[2] < 0)
+    printf("ray DOES intersect triangle");
+  else
+    printf("ray does NOT intersect triangle");
+  print_mat(matrix);
+  delete_matrix(matrix);
+  /* printf("\nSolution for the system:\n"); */
+  /* for (int i=0; i<3; i++) */
+  /*   printf("%lf\n", sol[i]); */
+  
+  free(sol);
+  free(a);
+  free(b);
+  free(c);
+  free(pi);
 }
 
 void init_structs(t_map *map)
@@ -43,7 +64,7 @@ void init_structs(t_map *map)
   map->light->pos = init_vector(WINDW, 0 , 50);
   // printf("light pos: (%f %f %f)\n", map->light->pos->x, map->light->pos->y, map->light->pos->z);
   map->scene_init = scene_init1;
-  test();
+  // test();
 }
 
 void  object(t_object *obj, double x, double y, double z)
